@@ -83,7 +83,10 @@ String _escape(String input) {
       .replaceAllMapped(RegExp(r'`+(?![`\s\W]).+?`+'),
           (match) => match[0]!.replaceAll(RegExp(r'`'), '\\`'))
       .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}')
-      .replaceAll("=", "\\=");
+      .replaceAllMapped(RegExp(r"[\r\n|\n]={1}"), (match) {
+        print("DKM $match[0]");
+        return "\\=";
+      });
   print("_escape $result");
   return result;
 }
