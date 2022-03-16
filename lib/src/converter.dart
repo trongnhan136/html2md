@@ -85,10 +85,8 @@ String _escape(String input) {
       .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}');
 
   if (result.startsWith("=")) {
-    print("ok $result");
     String test = result.replaceAll(RegExp(r"\s+"), "").replaceAll("=", "");
     if (test.isEmpty) {
-      // result = result.replaceAll("=", "\\=");
       result = result.replaceFirst("=", "\\=");
     }
   }
