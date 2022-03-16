@@ -84,11 +84,13 @@ String _escape(String input) {
           (match) => match[0]!.replaceAll(RegExp(r'`'), '\\`'))
       .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}');
 
+  if (result.startsWith("=")) {
+    print("ok");
+  }
   String test = result.replaceAll(RegExp(r"\s+"), "").replaceAll("=", "");
-  print("test ${test.length} $result");
   if (test.isEmpty) {
-    print("go here");
-    result = result.replaceAll("=", "\\=");
+    // result = result.replaceAll("=", "\\=");
+    result = result.replaceFirst("=", "\\=");
   }
   return result;
 }
