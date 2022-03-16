@@ -85,7 +85,7 @@ String _escape(String input) {
       .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}');
 
   String test = result.replaceAll("=", "").replaceAll(" ", "");
-  print("test ${test.length}");
+  print("test ${test.length} $result");
   if (test.isEmpty) {
     print("go here");
     result = result.replaceAll("=", "\\=");
