@@ -61,7 +61,7 @@ String convert(
 }
 
 String _escape(String input) {
-  return input
+  var result = input
       .replaceAllMapped(RegExp(r'\\(\S)'),
           (match) => '\\\\${match[1]}') // Escape backslash escapes!
       .replaceAllMapped(RegExp(r'^(#{1,6} )', multiLine: true),
@@ -82,7 +82,10 @@ String _escape(String input) {
           (match) => match[0]!.replaceAll(RegExp(r'_'), '\\_'))
       .replaceAllMapped(RegExp(r'`+(?![`\s\W]).+?`+'),
           (match) => match[0]!.replaceAll(RegExp(r'`'), '\\`'))
-      .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}');
+      .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}')
+      .replaceAll("=", "\\=");
+  print("_escape $result");
+  return result;
 }
 
 Map<String, String> _getFlankingWhitespace(Node node) {
