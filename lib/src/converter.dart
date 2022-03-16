@@ -82,12 +82,12 @@ String _escape(String input) {
           (match) => match[0]!.replaceAll(RegExp(r'_'), '\\_'))
       .replaceAllMapped(RegExp(r'`+(?![`\s\W]).+?`+'),
           (match) => match[0]!.replaceAll(RegExp(r'`'), '\\`'))
-      .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}')
-      .replaceAllMapped(RegExp(r"[\r\n|\n]={1}"), (match) {
-        print("DKM $match[0]");
-        return "\\=";
-      });
-  print("_escape $result");
+      .replaceAllMapped(RegExp(r'[\[\]]'), (match) => '\\${match[0]}');
+
+  String test = result.replaceAll("=", "").replaceAll(" ", "");
+  if (test.isEmpty) {
+    result = result.replaceAll("=", "\\=");
+  }
   return result;
 }
 
